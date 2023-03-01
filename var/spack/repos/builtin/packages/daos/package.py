@@ -28,7 +28,7 @@ class Daos(SConsPackage):
     depends_on("go", type="build")
     depends_on("hwloc")
     depends_on("isa-l")
-    depends_on("isa-l_crypto")
+    depends_on("isa-l-crypto")
     depends_on("libfabric")
     depends_on("libfuse@3.6.1:")
     depends_on("libuuid")
@@ -62,7 +62,7 @@ class Daos(SConsPackage):
             format(spec["libyaml"].prefix),
             format(spec["hwloc"].prefix),
             format(spec["isa-l"].prefix),
-            format(spec["isa-l_crypto"].prefix),
+            format(spec["isa-l-crypto"].prefix),
             format(spec["mercury"].prefix),
             format(spec["meson"].prefix),
             format(spec["openssl"].prefix),
