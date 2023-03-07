@@ -21,8 +21,10 @@ class Daos(SConsPackage):
         "debug", default=False, description="Enable debugging info and strict compile warnings"
     )
 
+    patch("0001-LIBPATH-fix-for-ALT_PREFIX.2.patch")
+
     depends_on("argobots")
-    depends_on("boost@develop+python", type="build")
+    depends_on("boost+python", type="build")
     depends_on("cmocka", type="build")
     depends_on("dpdk@22.11:")
     depends_on("go", type="build")
@@ -74,7 +76,7 @@ class Daos(SConsPackage):
         for i in alt_prefix:
             if i != "/usr":
                 alt_prefix_clean.append(i)
-                alt_prefix_clean.append("/usr")
+        alt_prefix_clean.append("/usr")
         args.extend(
             [
                 "WARNING_LEVEL=warning",
