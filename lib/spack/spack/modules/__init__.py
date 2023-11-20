@@ -9,13 +9,17 @@ include Tcl non-hierarchical modules, Lua hierarchical modules, and others.
 
 from typing import Dict, Type
 
-from .common import BaseModuleFileWriter, disable_modules
-from .lmod import LmodModulefileWriter
-from .tcl import TclModulefileWriter
+from .common import BaseConfiguration, BaseModuleFileWriter, disable_modules
+from .lmod import LmodConfiguration, LmodModulefileWriter
+from .tcl import TclConfiguration, TclModulefileWriter
 
 __all__ = ["TclModulefileWriter", "LmodModulefileWriter", "disable_modules"]
 
 module_types: Dict[str, Type[BaseModuleFileWriter]] = {
     "tcl": TclModulefileWriter,
     "lmod": LmodModulefileWriter,
+}
+module_config_types: Dict[str, Type[BaseConfiguration]] = {
+    "tcl": TclConfiguration,
+    "lmod": LmodConfiguration,
 }
