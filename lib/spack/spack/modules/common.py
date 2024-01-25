@@ -368,7 +368,8 @@ def get_modules(module_type, spec, get_full_path, module_set_name="default", req
         else:
             return [module.use_name]
     elif spec.external_modules:
-        conf = spack.modules.module_config_types[module_type](spec, module_set_name)
+        writer = spack.modules.module_types[module_type](spec, module_set_name)
+        conf = writer.conf
         if conf.excluded:
             if required:
                 tty.debug("The module configuration has excluded {0}: " "omitting it".format(spec))
@@ -377,7 +378,7 @@ def get_modules(module_type, spec, get_full_path, module_set_name="default", req
 
         if get_full_path:
             err_msg = "Cannot retrieve full path to an external module"
-            raise NotImplementedError(err_msg)
+            raise ExternalModulefileError(err_msg)
         else:
             return spec.external_modules
     else:
@@ -1135,3 +1136,7 @@ class ModulercHeaderNotDefined(AttributeError, ModulesError):
 
 class ModulesTemplateNotFoundError(ModulesError, RuntimeError):
     """Raised if the template for a module file was not found."""
+
+
+class ExternalModulefileError(ModulesError):
+    """Raised when full path to an external modulefile is requested."""
