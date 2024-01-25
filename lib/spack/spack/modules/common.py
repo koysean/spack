@@ -842,6 +842,8 @@ class BaseContext(tengine.Context):
         for spec in getattr(self.conf, what):
             if spec.external_modules:
                 external_modules.extend(spec.external_modules)
+            elif spec.external:
+                continue
             else:
                 local_modules.append(m.make_layout(spec, name).use_name)
 
